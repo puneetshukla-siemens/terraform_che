@@ -1,0 +1,23 @@
+
+# Use the light version of the image that contains just the latest binary
+FROM hashicorp/terraform:light
+
+# The app folder will contain all our files
+WORKDIR /Docker_tf
+
+# Put all your configration files in the same folder as the Dockerfile
+COPY . /Docker_tf
+
+#export credentials
+ENV AWS_ACCESS_KEY_ID=ASIATTJMI72BLXCYIG6S
+ENV AWS_SECRET_ACCESS_KEY=vAhOZYkt0EmVunL8TejT5wfrf7athvCRDpXhqbnf
+ENV AWS_SESSION_TOKEN=FwoGZXIvYXdzENv//////////wEaDIPifqbmFa7dkKEFEiK6AcZGNK01nfAAIpzJKVTJUNqM9JA7jb/SZRY+OjeLJsSGHdvHrZr5kNYhM2tFGY+YkFFBkq1PZnW1dga5LuqZ9UuXNLC9AUt+5jeg3fK5/t+XYePYQztHMx9g8XWV8POUZSW4po6d5/Qm7eti0byVeK2e6HBXMdHGc7GsgtQuBbPji/aCOOE+A3hqbbyzVZuGogOtMafsuyEM7Tc5xxkDmDlRRE11480+13yNiGxLU90Vvj9NwR/Y+wb+BSjKspPvBTIt9PibUkZFtRczUTubLWAvuYUCWQ7sR+HZogjyROJt/EvYOfdVloC8gg9qSVQY
+
+
+
+# Initalize terraform with local settings and data
+RUN ["terraform", "init"]
+
+# Plan and execute the configurations
+CMD ["plan"]
+CMD ["apply"]
